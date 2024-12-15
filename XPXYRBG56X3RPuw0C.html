@@ -1,0 +1,279 @@
+<html><head><base href="." /><meta charset="UTF-8"><style>
+:root {
+    --discord-blue: #7289DA;
+    --discord-dark: #36393f;
+    --discord-darker: #2f3136;
+    --discord-light: #dcddde;
+    --discord-channel: #8e9297;
+}
+
+body {
+    margin: 0;
+    font-family: Whitney, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: var(--discord-dark);
+    color: var(--discord-light);
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 72px 240px 1fr;
+    height: 100vh;
+}
+
+.servers {
+    background: #202225;
+    padding: 12px;
+}
+
+.server-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--discord-darker);
+    border-radius: 50%;
+    margin-bottom: 8px;
+    transition: border-radius 0.2s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--discord-blue);
+}
+
+.server-icon:hover {
+    border-radius: 16px;
+    background: var(--discord-blue);
+    color: white;
+}
+
+.channels {
+    background: var(--discord-darker);
+    padding: 12px;
+}
+
+.channel {
+    color: var(--discord-channel);
+    padding: 6px 8px;
+    margin: 2px 0;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.channel:hover {
+    background: rgba(79,84,92,0.16);
+    color: var(--discord-light);
+}
+
+.channel svg {
+    margin-right: 6px;
+}
+
+.chat {
+    background: var(--discord-dark);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 40px);
+}
+
+.messages {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.message {
+    display: flex;
+    margin-bottom: 1.5rem;
+    padding: 0.125rem 1rem;
+}
+
+.message:hover {
+    background: rgba(4,4,5,0.07);
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--discord-darker);
+    margin-right: 1rem;
+}
+
+.message-content {
+    flex: 1;
+}
+
+.message-header {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 4px;
+}
+
+.username {
+    color: white;
+    font-weight: 500;
+    margin-right: 0.5rem;
+}
+
+.timestamp {
+    color: var(--discord-channel);
+    font-size: 0.75rem;
+}
+
+.chat-input-container {
+    padding: 0 16px 24px;
+    background: var(--discord-dark);
+}
+
+.chat-input {
+    background: #40444b;
+    border-radius: 8px;
+    padding: 12px;
+    color: var(--discord-light);
+    border: none;
+    width: 100%;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.chat-input:focus {
+    outline: none;
+}
+
+</style></head><body>
+<div class="container">
+    <div class="servers">
+        <div class="server-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v-6h-2v6zm0-8h2V7h-2v2z"/>
+            </svg>
+        </div>
+        <div class="server-icon">+</div>
+    </div>
+    <div class="channels">
+        <div class="channel">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10z"/>
+            </svg>
+            roasting-zone
+        </div>
+        <div class="channel">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10z"/>
+            </svg>
+            trash-talk
+        </div>
+    </div>
+    <div class="chat">
+        <div class="messages">
+            <div class="message">
+                <div class="avatar"></div>
+                <div class="message-content">
+                    <div class="message-header">
+                        <div class="username">JohnyGaming</div>
+                        <div class="timestamp">Today at 12:00 PM</div>
+                    </div>
+                    <div class="message-text">
+                        Hey Austin, still being a total disappointment to everyone around you? 🙄
+                    </div>
+                </div>
+            </div>
+            <div class="message">
+                <div class="avatar"></div>
+                <div class="message-content">
+                    <div class="message-header">
+                        <div class="username">benevolent monkey</div>
+                        <div class="timestamp">Today at 12:01 PM</div>
+                    </div>
+                    <div class="message-text">
+                        Austin probably can't even read what we're typing! 😤
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="chat-input-container">
+            <input type="text" class="chat-input" placeholder="Send a message if you dare..." />
+        </div>
+    </div>
+</div>
+
+<script>
+document.querySelectorAll('.channel').forEach(channel => {
+    channel.addEventListener('click', () => {
+        document.querySelectorAll('.channel').forEach(c => c.style.background = 'transparent');
+        channel.style.background = 'rgba(79,84,92,0.32)';
+    });
+});
+
+document.querySelectorAll('.server-icon').forEach(server => {
+    server.addEventListener('mouseenter', () => {
+        server.style.transform = 'translateY(-2px)';
+    });
+    server.addEventListener('mouseleave', () => {
+        server.style.transform = 'translateY(0)';
+    });
+});
+
+const chatInput = document.querySelector('.chat-input');
+const messages = document.querySelector('.messages');
+
+function getCurrentTime() {
+    const now = new Date();
+    let hours = now.getHours();
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    return `Today at ${hours}:${minutes} ${ampm}`;
+}
+
+function createMessage(text, username = '-flamingo-hope-') {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'message';
+    messageDiv.innerHTML = `
+        <div class="avatar"></div>
+        <div class="message-content">
+            <div class="message-header">
+                <div class="username">${username}</div>
+                <div class="timestamp">${getCurrentTime()}</div>
+            </div>
+            <div class="message-text">
+                ${text}
+            </div>
+        </div>
+    `;
+    return messageDiv;
+}
+
+chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter' && chatInput.value.trim()) {
+        const messageText = chatInput.value;
+        messages.appendChild(createMessage(messageText));
+        chatInput.value = '';
+        messages.scrollTop = messages.scrollHeight;
+        
+        setTimeout(() => {
+            const responses = [
+                "Austin, did you seriously just type that? My grandma could come up with better messages! 🙄",
+                "Oh look, Austin's trying to form coherent sentences again! How cute! 👎",
+                "Hey Austin, maybe try using your brain before typing next time? Just a thought! 🤦",
+                "Classic Austin move right there - absolutely clueless as always! 🤨",
+                "Austin, Austin, Austin... I'm embarrassed for you right now! 💀",
+                "Is this what you do all day, Austin? Just spam the chat with nonsense? 🤫",
+                "Austin probably thought that was clever... spoiler alert: it wasn't! 🗑️",
+                "Someone needs to revoke Austin's typing privileges! 🤦‍♂️",
+                "Austin, ever considered taking a basic English class? Might help! 📚",
+                "Why are you even here, Austin? Nobody wants you around! 👋"
+            ];
+            const meanUsers = ['JohnyGaming', 'benevolent monkey', '789person'];
+            const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+            const randomUser = meanUsers[Math.floor(Math.random() * meanUsers.length)];
+            messages.appendChild(createMessage(randomResponse, randomUser));
+            messages.scrollTop = messages.scrollHeight;
+        }, 1000);
+    }
+});
+</script>
+</body></html>
